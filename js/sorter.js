@@ -28,6 +28,10 @@ function generateRandomArray(n) {
  */
 function flip(arr, flipIndex) {
 	// function logic left as an exercise
+	topHalf = arr.slice(0, flipIndex+1);
+	botHalf = arr.slice(flipIndex+1, arr.length);
+	topHalf = topHalf.reverse();
+	arr = topHalf.concat(botHalf);
 	return arr;
 }
 
@@ -39,5 +43,22 @@ function flip(arr, flipIndex) {
  */
 function arrangePancakes(arr) {
 	// function logic left as an exercise
-	return [];
+
+	for(let i = arr.length - 1; i >= 1; i--){
+		var max_idx = 0;
+		var max = arr[max_idx];
+		for(var j = 1; j <= i; j++){
+			if(arr[j] > max){
+				max = arr[j];
+				max_idx = j;
+			}
+		}
+
+		if(max_idx != i){
+			arr = flip(arr, max_idx);
+			arr = flip(arr, i);
+		}
+
+	}
+	return arr;
 }
